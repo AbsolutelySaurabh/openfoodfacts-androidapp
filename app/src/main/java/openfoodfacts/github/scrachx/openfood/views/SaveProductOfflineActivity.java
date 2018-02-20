@@ -15,6 +15,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -120,6 +121,10 @@ public class SaveProductOfflineActivity extends BaseActivity {
         if (sp.size() > 0) {
             mProduct = sp.get(0);
         }
+
+        Log.d("IMAGE URL: ", mProduct.getImgupload_front());
+        Log.d("BARCODE: ", mProduct.getBarcode());
+
         if(mProduct != null) {
             if(isNotEmpty(mProduct.getImgupload_front())) {
 		imgSaveFront.setVisibility(View.VISIBLE);
@@ -148,6 +153,7 @@ public class SaveProductOfflineActivity extends BaseActivity {
             name.setText(mProduct.getName());
             brand.setText(mProduct.getBrands());
             weight.setText(mProduct.getWeight());
+            barcodeText.setText(barcodeText.getText() + " " + mBarcode);
             ArrayAdapter unitAdapter = (ArrayAdapter) spinnerW.getAdapter();
             int spinnerPosition = unitAdapter.getPosition(mProduct.getWeight_unit());
             spinnerW.setSelection(spinnerPosition);
